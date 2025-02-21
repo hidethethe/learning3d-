@@ -3,7 +3,7 @@
 问题启发式，关注数据输入输出
 首先主观评价，代码较为繁杂，可读性一般。
 # 数据加载
-'''
+'''python
 def load_data(train, use_normals):
     if train: partition = 'train' # 这里可以做一下优化，直接两分类，不用额外参数判断
     else: partition = 'test'
