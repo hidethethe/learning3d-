@@ -62,6 +62,7 @@ class ModelNet40Data(Dataset):
 
        current_points = torch.from_numpy(current_points[:self.num_points, :]).float()
        label = torch.from_numpy(self.labels[idx]).type(torch.LongTensor)
+	# 将标签转换为长整型（通常用于分类问题）。
 
        return current_points, label
 
@@ -72,6 +73,8 @@ class ModelNet40Data(Dataset):
        pt_idxs = np.arange(0, self.num_points)
        np.random.shuffle(pt_idxs)
        return self.data[idx, pt_idxs].copy()
+       # 这里的randomize我没看懂，打乱的索引代表所有点的索引，但第二维的索引不是xyz的坐标索引吗，
+       # 而且打乱点的索引，标签的索引没有对应打乱
 
     def get_shape(self, label):
        return self.shapes[label]
