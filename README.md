@@ -1,6 +1,9 @@
 # learning3d-
-学习和理解点云深度学习库，问题启发式，关注数据输入输出
+点云分类分割配准深度学习库
+问题启发式，关注数据输入输出
+首先主观评价，代码较为繁杂，可读性一般。
 # 数据加载
+'''
 def load_data(train, use_normals):
     if train: partition = 'train' # 这里可以做一下优化，直接两分类，不用额外参数判断
     else: partition = 'test'
@@ -19,3 +22,4 @@ def load_data(train, use_normals):
     all_data = np.concatenate(all_data, axis=0)
     all_label = np.concatenate(all_label, axis=0)
     return all_data, all_label
+'''
