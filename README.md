@@ -9,13 +9,18 @@
 def load_data(train, use_normals):
     if train: partition = 'train' # 这里可以做一下优化，直接两分类，不用额外参数判断
     else: partition = 'test'
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__)) ####（类似的特殊变量还有那些）
-    DATA_DIR = os.path.join(BASE_DIR, os.pardir, 'data')  ####os.pardir 的值是 ..（表示上一级目录）
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    #（类似的python特殊变量还有那些,如何使用）
+    DATA_DIR = os.path.join(BASE_DIR, os.pardir, 'data')
+    # os.pardir 的值是 ..（表示上一级目录），类似的os操作
     all_data = []
     all_label = []
-    for h5_name in glob.glob(os.path.join(DATA_DIR, 'modelnet40_ply_hdf5_2048', 'ply_data_%s*.h5' % partition)): #### glob.glob其他功能和搜索方法，[] ?? *
+    for h5_name in glob.glob(os.path.join(DATA_DIR, 'modelnet40_ply_hdf5_2048', 'ply_data_%s*.h5' % partition)):
+    # glob.glob其他功能和搜索方法，[] ?? *
        f = h5py.File(h5_name)
-       if use_normals: data = np.concatenate([f['data'][:], f['normal'][:]], axis=-1).astype('float32') #### concatenate
+       if use_normals: data = np.concatenate([f['data'][:], f['normal'][:]], axis=-1).astype('float32')
+       # normals这里指法线
+       # concatenate函数使用，矩阵拼接理解，前后维度，在哪个维度操作，哪个维度就增加，其他维度必须相等且操作后不变
        else: data = f['data'][:].astype('float32')
        label = f['label'][:].astype('int64')
        f.close()
