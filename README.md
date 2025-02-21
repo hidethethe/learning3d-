@@ -100,9 +100,11 @@ class RegistrationData(Dataset):
 		
 		self.set_class(data_class)
 		self.partial_template = partial_template
+		# partial == 裁剪
 		self.partial_source = partial_source
 		self.noise = noise
 		self.additional_params = additional_params
+		# 包含其他配置参数，例如邻近点的数量、是否使用掩膜等。
 		self.use_rri = False
 
 		if self.algorithm == 'PCRNet' or self.algorithm == 'iPCRNet':
