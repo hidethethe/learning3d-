@@ -126,7 +126,8 @@ class RegistrationData(Dataset):
 			if 'nearest_neighbors' in self.additional_params.keys() and self.additional_params['nearest_neighbors'] > 0:
 				self.use_rri = True
 				self.nearest_neighbors = self.additional_params['nearest_neighbors']
-
+			#刚性配准不变特征（RRI）：提取用于刚性配准的特征，增强模型的鲁棒性。
+			#掩膜（Masking）：用来标记哪些点属于有效区域，特别是在处理部分点云数据时很有用。
 	def __len__(self):
 		return len(self.data_class)
 
