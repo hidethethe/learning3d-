@@ -1,9 +1,9 @@
 # learning3d-
 点云分类分割配准深度学习库
 问题启发式，关注数据输入输出
-首先主观评价，代码较为繁杂，可读性一般。
+
 # 数据加载
-这是一个 `inline code` 示例。
+
 
 ```python
 def load_data(train, use_normals):
@@ -17,6 +17,8 @@ def load_data(train, use_normals):
     all_label = []
     for h5_name in glob.glob(os.path.join(DATA_DIR, 'modelnet40_ply_hdf5_2048', 'ply_data_%s*.h5' % partition)):
     # glob.glob其他功能和搜索方法，[] ?? *
+    # `%s` 是一个占位符，会被 `partition` 的值替换。
+    # `*` 是通配符，表示匹配任意字符
        f = h5py.File(h5_name)
        if use_normals: data = np.concatenate([f['data'][:], f['normal'][:]], axis=-1).astype('float32')
        # normals这里指法线
@@ -27,6 +29,11 @@ def load_data(train, use_normals):
        all_data.append(data)
        all_label.append(label)
     all_data = np.concatenate(all_data, axis=0)
+    # np.concatenate函数本身输入就是列表or元组
     all_label = np.concatenate(all_label, axis=0)
     return all_data, all_label
+```
+
+```
+
 ```
